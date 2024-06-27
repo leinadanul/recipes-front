@@ -6,6 +6,7 @@ import { PrivateGuard } from './private.guard';
 import { FooterContainerComponent } from '../container/footer-container/footer-container.component';
 import { CarouselContainerComponent } from '../container/carousel-container/carousel-container.component';
 import { CategoryContainerComponent } from '../container/category-container/category-container.component';
+import { RecipesContainerComponent } from '../container/recipes-container/recipes-container.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
       { path: '', component: HeaderContainerComponent, outlet: 'header' },
       { path: '', component: CarouselContainerComponent, outlet: 'slides' },
       {path: '', component: CategoryContainerComponent, outlet: 'category' },
+      {path: '', component: RecipesContainerComponent, outlet: 'main'},
       { path: '', component: FooterContainerComponent, outlet: 'footer' },
     ],
   },
