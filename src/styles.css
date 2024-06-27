@@ -1,1 +1,180 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("./normalize.css");
+
+
+html{
+  font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";    background-color: #fff;
+  }
+
+  html, body {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+main{
+  max-width: 1110px;
+  margin: auto;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: auto;
+}
+
+
+.root {
+width: 100%;
+height: 100%;
+}
+.footer, .header{
+width: 100%;
+margin: unset;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+
+::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+
+::-webkit-scrollbar-thumb {
+  background: #007bff;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #216077;
+}
+
+/*
+** FORMS
+*/
+
+/* Add from display to padding*/
+.form{
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.form__section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+.form__title {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: #007bff;
+}
+.form__container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+.form__container legend {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.form__container label {
+  display: block;
+  margin-bottom: 10px;
+}
+.form__container input[type="text"],
+.form__container input[type="password"],
+.form__container input[type="email"],
+.form__container input[type="number"],
+.form__container textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 5px;
+  box-sizing: border-box;
+}
+.form__container button {
+  display: block;
+  margin: 0 auto;
+  width: 50%;
+  max-width: 200px;
+  padding: 5px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+.form__container button:hover {
+  background-color: #4ba2ff
+}
+
+.form__error{
+  color: red;
+  font-size: 14px;
+}
+
+/*
+** TABLES
+*/
+
+.books_table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.books_table th,
+.books_table td {
+      padding: 8px 15px;
+}
+
+.books__table__div {
+  overflow-y: auto;
+  height: 65vh;
+}
+
+.books__table__div thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: #f0f0f0;
+}
+
+.next_button {
+  display: block;
+  width: fit-content;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+  position:absolute;
+  bottom: 60px;
+  right: 50px;
+}
+
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

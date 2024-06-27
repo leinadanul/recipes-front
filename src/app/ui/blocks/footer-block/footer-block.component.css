@@ -1,0 +1,26 @@
+.footer {
+  padding: 20px;
+  text-align: center;
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.footer__list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer__social-media {
+  display: inline-block;
+  margin-top: 10px;
+  margin-right: 10px;
+  color: #ffffff;
+  padding: 10px;
+  margin-right: 20px;
+}
+
+.footer__list a {
+  color: #ffffff;
+  font-size: 24px;
+  text-decoration: none;
+}
