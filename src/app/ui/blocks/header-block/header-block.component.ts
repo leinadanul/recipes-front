@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { NgIf } from '@angular/common';
 
+
 @Component({
   selector: 'app-header-block',
   standalone: true,
