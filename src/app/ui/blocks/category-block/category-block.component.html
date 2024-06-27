@@ -1,0 +1,9 @@
+<div class="categories-container">
+  <h2>Categories</h2>
+  <div class="categories">
+    <div class="category" *ngFor="let category of categories">
+      <img [src]="category.image" alt="{{ category.name }}">
+      <p>{{ category.name }}</p>
+    </div>
+  </div>
+</div>
