@@ -175,3 +175,6 @@ app-quote-container{
   max-height: -webkit-fill-available;
   overflow-y: auto;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
