@@ -11,11 +11,8 @@ export class CategoryContainerComponent {
 
 
   categories = [
-    { name: 'food1', image: '../../../assets/img/angular.jpg' },
-    { name: 'food2', image: '../../../assets/img/angular.jpg' },
-    { name: 'food3', image: '../../../assets/img/react.jpg' },
-    { name: 'food4', image: '../../../assets/img/react.jpg' },
-    { name: 'food5', image: '../../../assets/img/vue.jpg' },
-    { name: 'food6', image: '../../../assets/img/vue.jpg' }
+    { name: 'Vegan', image: '../../../assets/img/angular.jpg' },
+    { name: 'Normal', image: '../../../assets/img/angular.jpg' },
+    { name: 'Light', image: '../../../assets/img/react.jpg' },
   ];
 }

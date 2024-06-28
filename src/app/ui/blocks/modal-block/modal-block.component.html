@@ -1,7 +1,18 @@
-<h1 mat-dialog-title>{{ data.title }}</h1>
-<div mat-dialog-content>
-  <img [src]="data.image" alt="{{ data.title }}" class="modal-content">
-  <p>{{ data.description }}</p>
+<div class="modal-container">
+  <div class="modal-image">
+    <img [src]="recipeInfo.imageUrl" alt="{{ recipeInfo.name }}">
+  </div>
+  <div class="modal-info">
+    <h1>{{ recipeInfo.name }}</h1>
+    <p>{{ recipeInfo.description }}</p>
+    <p><strong>Ingredients:</strong></p>
+    <ul>
+      <li *ngFor="let ingredient of recipeInfo.ingredients">{{ ingredient }}</li>
+    </ul>
+    <p><strong>Preparation Time:</strong> {{ recipeInfo.preparationTime }}</p>
+    <p><strong>Instructions:</strong></p>
+    <p>{{ recipeInfo.instructions }}</p>
+  </div>
 </div>
 <div mat-dialog-actions>
 </div>

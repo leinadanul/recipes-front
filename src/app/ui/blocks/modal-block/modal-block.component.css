@@ -1,5 +1,43 @@
-.modal-content {
-  width: 100%;
-  max-width: 500px;
-  height: auto;
+.modal-container {
+  display: flex;
+  max-width: 800px;
+}
+
+.modal-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-image img {
+  max-height: 100%;
+  width: auto;
+}
+
+.modal-info {
+  flex: 1;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+p {
+  margin: 10px 0;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+ul li {
+  margin-bottom: 5px;
+}
+
+mat-dialog-actions {
+  justify-content: flex-end;
+  padding: 10px;
 }
