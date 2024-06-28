@@ -1,6 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { RecipesContainerComponent } from '../../../container/recipes-container/recipes-container.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { NgFor } from '@angular/common';
@@ -15,5 +14,9 @@ import { NgFor } from '@angular/common';
 export class RecipesBlockComponent {
 
   @Input() recipes: any[];
+  @Output() productClicked = new EventEmitter<any>();
+  onProductClick(product: any) {
+    this.productClicked.emit(product);
+  }
 
 }

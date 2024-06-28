@@ -4,6 +4,7 @@ import { AlertModule } from '@coreui/angular';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -11,7 +12,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,AlertModule, MatCardModule, MatIconModule, MatGridListModule],
+  imports: [RouterOutlet,AlertModule, MatCardModule, MatIconModule, MatGridListModule,MatDialogModule],
   template: `<router-outlet/>`,
 })
 export class AppComponent {

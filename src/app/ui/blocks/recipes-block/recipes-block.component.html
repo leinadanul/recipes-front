@@ -1,13 +1,11 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-3" *ngFor="let product of recipes">
-      <div class="card mb-4">
-        <img class="card-img-top" [src]="product.image" alt="{{ product.title }}">
-        <div class="card-body">
-          <h5 class="card-title">{{ product.title }}</h5>
-          <p class="card-text">{{ product.description }}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<mat-grid-list cols="4" rowHeight="1:1" gutterSize="16px">
+  <mat-grid-tile *ngFor="let product of recipes">
+    <mat-card (click)="onProductClick(product)">
+      <img mat-card-image [src]="product.image" alt="{{ product.title }}">
+      <mat-card-content>
+        <h3>{{ product.title }}</h3>
+        <p>{{ product.description }}</p>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

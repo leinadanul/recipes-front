@@ -1,3 +1,4 @@
 <app-recipes-block
-[recipes]="recipes"
-/>
+  [recipes]="recipes"
+  (productClicked)="openDialog($event)"
+></app-recipes-block>
