@@ -23,6 +23,7 @@
     "@coreui/angular": "^5.2.2",
     "@coreui/coreui": "^5.0.2",
     "@coreui/icons-angular": "^5.2.2",
+    "@ngrx/effects": "^18.0.1",
     "@ngrx/store": "^17.2.0",
     "boostrap": "^2.0.0",
     "bootstrap": "^5.3.3",
