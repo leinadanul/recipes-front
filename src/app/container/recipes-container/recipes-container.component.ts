@@ -10,12 +10,13 @@ import { Recipes } from '../../core/models/recipe.model';
 import { Router } from '@angular/router';
 import { ListAllRecipesFacade } from './recipes-container.facade';
 import { AsyncPipe } from '@angular/common';
+import { AddButtonComponent } from '../../ui/elements/add-button/add-button.component';
 
 
 @Component({
   selector: 'app-recipes-container',
   standalone: true,
-  imports: [RecipesBlockComponent, MatCardModule, MatGridListModule, MatIconModule, AsyncPipe],
+  imports: [RecipesBlockComponent, MatCardModule, MatGridListModule, MatIconModule, AsyncPipe, AddButtonComponent],
   templateUrl: './recipes-container.component.html',
 })
 export class RecipesContainerComponent implements OnInit {
@@ -35,12 +36,13 @@ export class RecipesContainerComponent implements OnInit {
   private initializeSubscriptions(): void {
     this.recipes$ = this.facade.getRecipes$();
   }
-
-
   openDialog(recipe: Recipes): void {
     this.dialog.open(ModalContainerComponent, {
-
       data: recipe
     });
+  }
+
+  createRecipe = (): void => {
+    this.router.navigate(['a']);
   }
 }

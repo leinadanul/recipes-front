@@ -16,6 +16,8 @@ export class RecipesBlockComponent {
 
   @Input() recipes : Recipes[];
   @Output() recipeClicked = new EventEmitter<Recipes>();
+  @Input() createRecipe!: () => void;
+
 
   onRecipeClick(recipe: Recipes) {
     this.recipeClicked.emit(recipe);
