@@ -1,4 +1,4 @@
 <app-recipes-block
-  [recipes]="recipes"
+  [recipes]="recipes$ | async"
   (productClicked)="openDialog($event)"
 ></app-recipes-block>

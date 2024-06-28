@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { NgFor } from '@angular/common';
+import { Recipes } from '../../../core/models/recipe.model';
 
 @Component({
   selector: 'app-recipes-block',
@@ -13,10 +14,11 @@ import { NgFor } from '@angular/common';
 })
 export class RecipesBlockComponent {
 
-  @Input() recipes: any[];
-  @Output() productClicked = new EventEmitter<any>();
-  onProductClick(product: any) {
-    this.productClicked.emit(product);
+  @Input() recipes : Recipes[];
+  @Output() recipeClicked = new EventEmitter<any>();
+
+  onRecipeClick(recipe: any) {
+    this.recipeClicked.emit(recipe);
   }
 
 }
