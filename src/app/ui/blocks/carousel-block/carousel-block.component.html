@@ -1,12 +1,16 @@
-<c-carousel [interval]="0">
+<c-carousel [interval]="0"  class="carousel-container">
   <c-carousel-inner>
     <c-carousel-item *ngFor="let slide of slides">
       <img
         [src]="slide.src"
         alt="{{slide.title}}"
-        class="d-block w-100"
+        class="d-block w-100 carousel-image"
         loading="lazy"
       />
+      <c-carousel-caption class="d-none d-md-block">
+        <h3>{{slide.title}}</h3>
+        <p>{{slide.title}}</p>
+      </c-carousel-caption>
     </c-carousel-item>
   </c-carousel-inner>
   <c-carousel-control class="carousel-control-prev" direction="prev"></c-carousel-control>

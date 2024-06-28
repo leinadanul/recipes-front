@@ -1,13 +1,17 @@
 .carousel-container {
-  margin-top: 20px;
+  max-width: 1110px;
+  margin: auto;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: auto;
 }
 .carousel-container {
-  width: 100%;
+  /*width: 20%;*/
   max-width: 1110px;
-  margin: 20px auto;
+  /*margin: 20px auto;*/
 }
 
-.carousel-container img {
-  max-width: 100%;
-  height: auto;
-}
+
