@@ -37,8 +37,9 @@ export class RecipesContainerComponent implements OnInit {
   }
 
 
-  openDialog(recipe): void {
+  openDialog(recipe: Recipes): void {
     this.dialog.open(ModalContainerComponent, {
+
       data: recipe
     });
   }

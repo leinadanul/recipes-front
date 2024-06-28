@@ -15,9 +15,9 @@ import { Recipes } from '../../../core/models/recipe.model';
 export class RecipesBlockComponent {
 
   @Input() recipes : Recipes[];
-  @Output() recipeClicked = new EventEmitter<any>();
+  @Output() recipeClicked = new EventEmitter<Recipes>();
 
-  onRecipeClick(recipe: any) {
+  onRecipeClick(recipe: Recipes) {
     this.recipeClicked.emit(recipe);
   }
 

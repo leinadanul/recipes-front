@@ -11,6 +11,6 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   templateUrl: './modal-container.component.html',
 })
 export class ModalContainerComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public recipeInfo: any) {}
 
 }
