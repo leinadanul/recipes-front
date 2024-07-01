@@ -11,8 +11,14 @@ import { URL_RESOURCE } from "../resource/url.resource";
 export class RecipesService{
 
   constructor(private http: HttpClient){}
+
+
   getAllRecipes(): Observable<Recipes[]> {
     return this.http.get<Recipes[]>(URL_RESOURCE.getRecipes)
+  }
+
+  addRecipe(recipe: Recipes): Observable<void> {
+    return this.http.post<void>(URL_RESOURCE.postRecipe, recipe);
   }
 
 

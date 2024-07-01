@@ -1,0 +1,89 @@
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.modal-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-image-upload {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image-upload {
+  margin-bottom: 20px;
+}
+
+.image-upload-label {
+  cursor: pointer;
+  color: #3f51b5;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.image-upload-input {
+  display: none;
+}
+
+.image-preview img {
+  max-width: 100%;
+  max-height: 200px;
+  border: 1px solid #ccc;
+  padding: 5px;
+}
+
+.modal-info {
+  flex: 2;
+  padding: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.save-button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.cancel-button {
+  background-color: white;
+  color: #4CAF50;
+  border: 2px solid #4CAF50;
+  padding: 8px 18px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 20px;
+}

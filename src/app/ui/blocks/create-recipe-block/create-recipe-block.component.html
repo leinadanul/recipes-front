@@ -1,0 +1,54 @@
+<h1>New Recipe</h1>
+<div class="modal-container">
+  <div class="modal-image-upload">
+    <div class="image-upload">
+      <label for="imageUpload" class="image-upload-label">Upload Image</label>
+      <input type="file" id="imageUpload" (change)="onFileSelected($event)" class="image-upload-input">
+      <div class="image-preview" *ngIf="imagePreview">
+        <img [src]="imagePreview" alt="Image Preview">
+      </div>
+    </div>
+  </div>
+  <div class="modal-info">
+    <form [formGroup]="recipeForm" (ngSubmit)="onSubmit.emit()">
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Ingredients</mat-label>
+        <textarea matInput formControlName="ingredients"></textarea>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Preparation Time</mat-label>
+        <input matInput formControlName="preparationTime" type="number">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Instructions</mat-label>
+        <textarea matInput formControlName="instructions"></textarea>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Recipe Type</mat-label>
+        <mat-select formControlName="recipeType">
+          <mat-option value="NORMAL">Normal</mat-option>
+          <mat-option value="VEGAN">Vegan</mat-option>
+          <mat-option value="LIGHT">Light</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div mat-dialog-actions>
+        <button mat-button type="submit" class="save-button">Save</button>
+        <button mat-button type="button" class="cancel-button" (click)="onCancel.emit()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
