@@ -1,39 +1,54 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import {MatButtonModule} from '@angular/material/button';
+
 
 @Component({
   selector: 'app-create-recipe-block',
   standalone: true,
-  imports: [CommonModule,
+  imports: [
+    CommonModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatOptionModule,
-    MatSelectModule],
+    MatSelectModule,
+    MatButtonModule
+  ],
   templateUrl: './create-recipe-block.component.html',
-  styleUrl: './create-recipe-block.component.css'
+  styleUrls: ['./create-recipe-block.component.css']
 })
 export class CreateRecipeBlockComponent {
-  @Input() recipeForm: FormGroup;
+  @Input() recipeForm!: FormGroup;
+  @Input() imagePreview: string | ArrayBuffer | null = null;
   @Output() onSubmit = new EventEmitter<void>();
   @Output() onCancel = new EventEmitter<void>();
-  imagePreview: string | ArrayBuffer | null = null;
+  @Output() onFileSelected = new EventEmitter<Event>();
+  @Output() addIngredientEvent = new EventEmitter<void>();
+  @Output() removeIngredientEvent = new EventEmitter<number>();
 
-
-  onFileSelected(event: Event): void {
-    const file = (event.target as HTMLInputElement).files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.imagePreview = reader.result;
-      };
-      reader.readAsDataURL(file);
-    }
+  get ingredients(): FormArray {
+    return this.recipeForm.get('ingredients') as FormArray;
   }
 
+  addIngredient(): void {
+    this.addIngredientEvent.emit();
+  }
+
+  removeIngredient(index: number): void {
+    this.removeIngredientEvent.emit(index);
+  }
+
+  submitForm(): void {
+    this.onSubmit.emit();
+  }
+
+  cancelForm(): void {
+    this.onCancel.emit();
+  }
 }

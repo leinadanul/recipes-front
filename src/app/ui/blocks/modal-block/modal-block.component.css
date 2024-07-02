@@ -11,8 +11,9 @@
 }
 
 .modal-image img {
-  max-height: 100%;
-  width: auto;
+  width: 440px;
+  height: 400px;
+  object-fit: cover;
 }
 
 .modal-info {

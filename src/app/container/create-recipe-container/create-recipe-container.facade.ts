@@ -5,13 +5,10 @@ import { Store } from "@ngrx/store";
 import { Recipes } from "../../core/models/recipe.model";
 import { addRecipe } from "../../core/store/actions/recipes.actions";
 
-
-
 @Injectable({
   providedIn: 'root',
 })
-
-export class CreateRecipeContainerFacade{
+export class CreateRecipeContainerFacade {
   private subscription: Subscription = new Subscription();
   constructor(private readonly store: Store<AppState>) {}
 
@@ -19,11 +16,11 @@ export class CreateRecipeContainerFacade{
     this.store.dispatch(addRecipe({ recipe }));
   }
 
-  initSubcristion(): void{
+  initSubscription(): void {
     this.subscription = new Subscription();
   }
-  destroySubscription(): void{
+
+  destroySubscription(): void {
     this.subscription.unsubscribe();
   }
-
-  }
+}

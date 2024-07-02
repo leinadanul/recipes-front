@@ -3,14 +3,14 @@
   <div class="modal-image-upload">
     <div class="image-upload">
       <label for="imageUpload" class="image-upload-label">Upload Image</label>
-      <input type="file" id="imageUpload" (change)="onFileSelected($event)" class="image-upload-input">
+      <input type="file" id="imageUpload" (change)="onFileSelected.emit($event)" class="image-upload-input">
       <div class="image-preview" *ngIf="imagePreview">
         <img [src]="imagePreview" alt="Image Preview">
       </div>
     </div>
   </div>
   <div class="modal-info">
-    <form [formGroup]="recipeForm" (ngSubmit)="onSubmit.emit()">
+    <form [formGroup]="recipeForm" (ngSubmit)="submitForm()">
       <mat-form-field>
         <mat-label>Name</mat-label>
         <input matInput formControlName="name">
@@ -21,10 +21,16 @@
         <textarea matInput formControlName="description"></textarea>
       </mat-form-field>
 
-      <mat-form-field>
-        <mat-label>Ingredients</mat-label>
-        <textarea matInput formControlName="ingredients"></textarea>
-      </mat-form-field>
+      <div formArrayName="ingredients">
+        <div *ngFor="let ingredient of ingredients.controls; let i=index" [formGroupName]="i">
+          <mat-form-field>
+            <mat-label>Ingredient</mat-label>
+            <input matInput formControlName="ingredient">
+          </mat-form-field>
+          <button mat-button type="button" (click)="removeIngredient(i)">Remove</button>
+        </div>
+        <button mat-button type="button" (click)="addIngredient()"> + Ingredient</button>
+      </div>
 
       <mat-form-field>
         <mat-label>Preparation Time</mat-label>
@@ -45,10 +51,12 @@
         </mat-select>
       </mat-form-field>
 
-      <div mat-dialog-actions>
-        <button mat-button type="submit" class="save-button">Save</button>
-        <button mat-button type="button" class="cancel-button" (click)="onCancel.emit()">Cancel</button>
-      </div>
+      <div class="button-form">
+        <div mat-dialog-actions>
+          <button mat-button type="submit" class="save-button">Save</button>
+          <button mat-button type="button" class="cancel-button" (click)="cancelForm()">Cancel</button>
+        </div>
+    </div>
     </form>
   </div>
 </div>
