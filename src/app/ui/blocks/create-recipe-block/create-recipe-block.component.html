@@ -27,7 +27,7 @@
             <mat-label>Ingredient</mat-label>
             <input matInput formControlName="ingredient">
           </mat-form-field>
-          <button mat-button type="button" (click)="removeIngredient(i)">Remove</button>
+          <mat-icon mat-button type="button" (click)="removeIngredient(i)">delete_outline</mat-icon>
         </div>
         <button mat-button type="button" (click)="addIngredient()"> + Ingredient</button>
       </div>

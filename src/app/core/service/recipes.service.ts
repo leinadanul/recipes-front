@@ -28,6 +28,11 @@ export class RecipesService {
     );
   }
 
+  deleteRecipe(recipeId: string): Observable<void>{
+    const Url = `${URL_RESOURCE.deleteRecipe}/${recipeId}`;
+    return this.http.delete<void>(Url);
+  }
+
   createRecipeWithImage(recipe: Recipes, file: File | null): Observable<void> {
     if (file) {
       return this.uploadImage(file).pipe(
