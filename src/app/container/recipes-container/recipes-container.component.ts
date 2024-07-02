@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { ListAllRecipesFacade } from './recipes-container.facade';
 import { AsyncPipe } from '@angular/common';
 import { AddButtonComponent } from '../../ui/elements/add-button/add-button.component';
+import { CreateRecipeContainerComponent } from '../create-recipe-container/create-recipe-container.component';
 
 
 @Component({
@@ -24,7 +25,7 @@ export class RecipesContainerComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private router: Router,
+    //private router: Router,
     private readonly facade: ListAllRecipesFacade
   ) { }
 
@@ -43,6 +44,9 @@ export class RecipesContainerComponent implements OnInit {
   }
 
   createRecipe = (): void => {
-    this.router.navigate(['a']);
-  }
+    this.dialog.open(CreateRecipeContainerComponent, {
+      width: '80vw',
+      height: '80vh',
+    });
+}
 }

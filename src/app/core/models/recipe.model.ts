@@ -3,7 +3,7 @@ export interface Recipes{
   name: string;
   description: string;
   ingredients : [];
-  preparationTime : string;
+  preparationTime : number;
   imageUrl: string;
   instructions: string;
   recipeType : recipeType
