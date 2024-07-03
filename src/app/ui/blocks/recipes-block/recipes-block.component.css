@@ -1,6 +1,6 @@
-/* recipes-block.component.css */
 mat-card {
   max-width: 100%;
+  cursor: pointer;
 }
 
 mat-card img {

@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import { map, switchMap } from "rxjs/operators";
 import { Recipes } from "../models/recipe.model";
 import { URL_RESOURCE } from "../resource/url.resource";
@@ -9,6 +9,9 @@ import { URL_RESOURCE } from "../resource/url.resource";
   providedIn: 'root'
 })
 export class RecipesService {
+
+  private recipesSubject = new BehaviorSubject<Recipes[]>([]);
+  recipes$ = this.recipesSubject.asObservable()
 
   constructor(private http: HttpClient) {}
 
@@ -28,6 +31,11 @@ export class RecipesService {
     );
   }
 
+  deleteRecipe(recipeId: string): Observable<void>{
+    const Url = `${URL_RESOURCE.deleteRecipe}/${recipeId}`;
+    return this.http.delete<void>(Url);
+  }
+
   createRecipeWithImage(recipe: Recipes, file: File | null): Observable<void> {
     if (file) {
       return this.uploadImage(file).pipe(
@@ -38,6 +46,23 @@ export class RecipesService {
       );
     } else {
       return this.addRecipe(recipe);
+    }
+  }
+  updateRecipe(recipeId: string, recipe: Recipes): Observable<void> {
+    const Url = `${URL_RESOURCE.updateRecipe}/${recipeId}`;
+    return this.http.put<void>(Url, recipe);
+  }
+
+  updateRecipeWithImage(recipeId: string, recipe: Recipes, file: File | null): Observable<void> {
+    if (file) {
+      return this.uploadImage(file).pipe(
+        switchMap((url: string) => {
+          recipe.imageUrl = url;
+          return this.updateRecipe(recipeId, recipe);
+        })
+      );
+    } else {
+      return this.updateRecipe(recipeId, recipe);
     }
   }
 }
