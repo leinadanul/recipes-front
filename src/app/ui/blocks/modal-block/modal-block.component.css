@@ -42,3 +42,13 @@ mat-dialog-actions {
   justify-content: flex-end;
   padding: 10px;
 }
+.trash-icon{
+  cursor: pointer;
+}
+.delete-icon{
+  cursor: pointer;
+}
+
+.actions-icon{
+  justify-content: space-between;
+}

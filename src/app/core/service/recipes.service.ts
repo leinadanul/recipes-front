@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import { map, switchMap } from "rxjs/operators";
 import { Recipes } from "../models/recipe.model";
 import { URL_RESOURCE } from "../resource/url.resource";
@@ -9,6 +9,9 @@ import { URL_RESOURCE } from "../resource/url.resource";
   providedIn: 'root'
 })
 export class RecipesService {
+
+  private recipesSubject = new BehaviorSubject<Recipes[]>([]);
+  recipes$ = this.recipesSubject.asObservable()
 
   constructor(private http: HttpClient) {}
 

@@ -12,9 +12,9 @@
     <p><strong>Preparation Time:</strong> {{ recipeInfo.preparationTime }}</p>
     <p><strong>Instructions:</strong></p>
     <p>{{ recipeInfo.instructions }}</p>
-    <div mat-dialog-actions>
-      <mat-icon mat-button color="warn" (click)="openDeleteConfirmation()">delete_outline</mat-icon>
-      <mat-icon mat-button color="primary" (click)="openEditRecipe()">edit</mat-icon>
+    <div mat-dialog-actions class="actions-icon">
+      <mat-icon mat-button color="warn" class="trash-icon" (click)="openDeleteConfirmation()">delete_outline</mat-icon>
+      <mat-icon mat-button color="primary" class="delete-icon" (click)="openEditRecipe()">edit</mat-icon>
     </div>
   </div>
 </div>

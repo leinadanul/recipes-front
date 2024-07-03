@@ -7,11 +7,13 @@ import { ModalContainerComponent } from '../modal-container/modal-container.comp
 import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { Recipes } from '../../core/models/recipe.model';
-import { Router } from '@angular/router';
 import { ListAllRecipesFacade } from './recipes-container.facade';
 import { AsyncPipe } from '@angular/common';
 import { AddButtonComponent } from '../../ui/elements/add-button/add-button.component';
 import { CreateRecipeContainerComponent } from '../create-recipe-container/create-recipe-container.component';
+import { Store } from '@ngrx/store';
+import { deleteRecipe, loadRecipes, updateRecipe } from '../../core/store/actions/recipes.actions';
+import { selectAllRecipes, selectRecipesError, selectRecipesLoading } from '../../core/store/selectors/recipes.selectors';
 
 
 @Component({
@@ -22,21 +24,22 @@ import { CreateRecipeContainerComponent } from '../create-recipe-container/creat
 })
 export class RecipesContainerComponent implements OnInit {
   public recipes$: Observable<Recipes[]>;
+  public loading$: Observable<boolean>;
+  public error$: Observable<string | null>;
 
   constructor(
     public dialog: MatDialog,
-    //private router: Router,
+    private store: Store,
     private readonly facade: ListAllRecipesFacade
   ) { }
 
-  ngOnInit(): void
-  {
-    this.facade.loadRecipes();
-    this.initializeSubscriptions();
+  ngOnInit(): void {
+    this.store.dispatch(loadRecipes());
+    this.recipes$ = this.store.select(selectAllRecipes);
+    this.loading$ = this.store.select(selectRecipesLoading);
+    this.error$ = this.store.select(selectRecipesError);
   }
-  private initializeSubscriptions(): void {
-    this.recipes$ = this.facade.getRecipes$();
-  }
+
   openDialog(recipe: Recipes): void {
     this.dialog.open(ModalContainerComponent, {
       data: recipe
@@ -60,5 +63,12 @@ export class RecipesContainerComponent implements OnInit {
         isEdit: false
       }
     });
+  }
+  deleteRecipe(recipeId: string): void {
+    this.store.dispatch(deleteRecipe({ recipeId }));
+  }
+
+  updateRecipe(recipeId: string, recipe: Recipes): void {
+    this.store.dispatch(updateRecipe({ recipeId, recipe }));
   }
 }
