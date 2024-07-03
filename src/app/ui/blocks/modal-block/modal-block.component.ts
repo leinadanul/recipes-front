@@ -5,6 +5,7 @@ import { RecipesService } from '../../../core/service/recipes.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DelteMessageBlockComponent } from '../delte-message-block/delte-message-block.component';
 import { MatIconModule } from '@angular/material/icon';
+import { CreateRecipeContainerComponent } from '../../../container/create-recipe-container/create-recipe-container.component';
 
 
 @Component({
@@ -45,4 +46,9 @@ export class ModalBlockComponent {
       });
     });
   }
+  openEditRecipe(): void {
+    const dialogRef = this.dialog.open(CreateRecipeContainerComponent, {
+      data: { recipe: this.recipeInfo, isEdit: true }
+    });
+}
 }

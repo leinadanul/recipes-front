@@ -45,4 +45,21 @@ export class RecipesService {
       return this.addRecipe(recipe);
     }
   }
+  updateRecipe(recipeId: string, recipe: Recipes): Observable<void> {
+    const Url = `${URL_RESOURCE.updateRecipe}/${recipeId}`;
+    return this.http.put<void>(Url, recipe);
+  }
+
+  updateRecipeWithImage(recipeId: string, recipe: Recipes, file: File | null): Observable<void> {
+    if (file) {
+      return this.uploadImage(file).pipe(
+        switchMap((url: string) => {
+          recipe.imageUrl = url;
+          return this.updateRecipe(recipeId, recipe);
+        })
+      );
+    } else {
+      return this.updateRecipe(recipeId, recipe);
+    }
+  }
 }

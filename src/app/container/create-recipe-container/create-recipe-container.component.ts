@@ -22,18 +22,19 @@ export class CreateRecipeContainerComponent {
     private dialog: MatDialogRef<CreateRecipeContainerComponent>,
     private facade: CreateRecipeContainerFacade,
     private service: RecipesService,
-    @Inject(MAT_DIALOG_DATA) public data: Recipes
+    @Inject(MAT_DIALOG_DATA) public data: {recipe: Recipes, isEdit: boolean}
   ) {
     this.recipeForm = this.fb.group({
-      name: ['', Validators.required],
-      description: ['', Validators.required],
-      ingredients: this.fb.array([]),
-      preparationTime: [null, [Validators.required, Validators.pattern(/^[0-9]+$/)]],
-      imageUrl: [''],
-      instructions: ['', Validators.required],
-      recipeType: ['', Validators.required]
+      name: [data.recipe.name || '', Validators.required],
+      description: [data.recipe.description || '', Validators.required],
+      ingredients: this.fb.array(data.recipe.ingredients.map(ing => this.fb.group({ingredient: [ing, Validators.required]}))),
+      preparationTime: [data.recipe.preparationTime || null, [Validators.required, Validators.pattern(/^[0-9]+$/)]],
+      imageUrl: [data.recipe.imageUrl || ''],
+      instructions: [data.recipe.instructions || '', Validators.required],
+      recipeType: [data.recipe.recipeType || '', Validators.required]
     });
 
+    this.imagePreview = data.recipe.imageUrl || null;
   }
 
   get ingredients(): FormArray {
@@ -58,14 +59,25 @@ export class CreateRecipeContainerComponent {
         preparationTime: parseInt(this.recipeForm.value.preparationTime, 10),
       };
 
-      this.service.createRecipeWithImage(recipe, this.selectedFile).subscribe(
-        () => {
-          this.dialog.close();
-        },
-        (error) => {
-          console.error('Failed to create recipe', error);
-        }
-      );
+      if (this.data.isEdit) {
+        this.service.updateRecipeWithImage(this.data.recipe.id, recipe, this.selectedFile).subscribe(
+          () => {
+            this.dialog.close();
+          },
+          (error) => {
+            console.error('Failed to update recipe', error);
+          }
+        );
+      } else {
+        this.service.createRecipeWithImage(recipe, this.selectedFile).subscribe(
+          () => {
+            this.dialog.close();
+          },
+          (error) => {
+            console.error('Failed to create recipe', error);
+          }
+        );
+      }
     }
   }
 
