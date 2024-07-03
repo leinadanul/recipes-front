@@ -47,6 +47,18 @@ export class RecipesContainerComponent implements OnInit {
     this.dialog.open(CreateRecipeContainerComponent, {
       width: '80vw',
       height: '80vh',
+      data: {
+        recipe: {
+          name: '',
+          description: '',
+          ingredients: [],
+          preparationTime: null,
+          imageUrl: '',
+          instructions: '',
+          recipeType: ''
+        },
+        isEdit: false
+      }
     });
-}
+  }
 }

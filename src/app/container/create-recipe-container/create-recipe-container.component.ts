@@ -99,4 +99,23 @@ export class CreateRecipeContainerComponent {
       reader.readAsDataURL(file);
     }
   }
+  setFormData(recipe: Recipes): void {
+    this.recipeForm.patchValue({
+      name: recipe.name,
+      description: recipe.description,
+      preparationTime: recipe.preparationTime,
+      imageUrl: recipe.imageUrl,
+      instructions: recipe.instructions,
+      recipeType: recipe.recipeType
+    });
+
+    recipe.ingredients.forEach(ingredient => {
+      this.ingredients.push(this.fb.group({
+        ingredient: [ingredient, Validators.required]
+      }));
+    });
+
+    this.imagePreview = recipe.imageUrl;
+  }
+
 }
