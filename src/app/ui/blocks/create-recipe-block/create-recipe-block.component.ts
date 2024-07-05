@@ -7,6 +7,8 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 
 
 @Component({
@@ -20,12 +22,14 @@ import { MatIconModule } from '@angular/material/icon';
     MatOptionModule,
     MatSelectModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatProgressSpinnerModule
   ],
   templateUrl: './create-recipe-block.component.html',
   styleUrls: ['./create-recipe-block.component.css']
 })
 export class CreateRecipeBlockComponent {
+  @Input() isLoading : boolean;
   @Input() recipeForm!: FormGroup;
   @Input() imagePreview: string | ArrayBuffer | null = null;
   @Output() onSubmit = new EventEmitter<void>();

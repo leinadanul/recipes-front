@@ -29,7 +29,7 @@ export class ListAllRecipesFacade {
     this.store.dispatch(RecipeActions.deleteRecipe({ recipeId }));
   }
 
-  updateRecipe(recipeId: string, recipe: Recipes): void {
-    this.store.dispatch(RecipeActions.updateRecipe({ recipeId, recipe }));
+  updateRecipe(recipeId: string, recipe: Recipes, recipePicture: File  ): void {
+    this.store.dispatch(RecipeActions.updateRecipe({ recipeId, recipe, recipePicture }));
   }
 }

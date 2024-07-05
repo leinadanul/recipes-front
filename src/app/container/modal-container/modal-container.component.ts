@@ -8,6 +8,10 @@ import { RecipesService } from '../../core/service/recipes.service';
 import { DelteMessageBlockComponent } from '../../ui/blocks/delte-message-block/delte-message-block.component';
 import { CreateRecipeContainerComponent } from '../create-recipe-container/create-recipe-container.component';
 import { AsyncPipe } from '@angular/common';
+import { deleteRecipe } from '../../core/store/actions/recipes.actions';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../core/store/store';
+
 
 @Component({
   selector: 'app-modal-container',
@@ -22,7 +26,9 @@ export class ModalContainerComponent {
     private snackBar: MatSnackBar,
     private recipesService: RecipesService,
     private dialogRef: MatDialogRef<ModalBlockComponent>,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private store: Store<AppState>
+
   ) {}
   openDeleteConfirmation(): void {
     const dialogRef = this.dialog.open(DelteMessageBlockComponent);
@@ -33,17 +39,13 @@ export class ModalContainerComponent {
       }
     });
   }
+
   deleteRecipe(): void {
-    this.recipesService.deleteRecipe(this.recipeInfo.id).subscribe(() => {
-      this.snackBar.open('Recipe deleted successfully', 'Close', {
-        duration: 3000,
-      });
-      this.dialogRef.close(true);
-    }, error => {
-      this.snackBar.open('Failed to delete recipe', 'Close', {
-        duration: 3000,
-      });
+    this.store.dispatch(deleteRecipe({ recipeId: this.recipeInfo.id }));
+    this.snackBar.open('Recipe deleted successfully', 'Close', {
+      duration: 3000,
     });
+    this.dialogRef.close(true);
   }
   openEditRecipe(): void {
     const dialogRef = this.dialog.open(CreateRecipeContainerComponent, {
