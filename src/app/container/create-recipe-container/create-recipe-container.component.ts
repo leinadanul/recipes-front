@@ -53,7 +53,6 @@ export class CreateRecipeContainerComponent {
   removeIngredient(index: number): void {
     this.ingredients.removeAt(index);
   }
-
   onSubmit() {
     if (this.recipeForm.valid) {
       const recipe: Recipes = {
@@ -64,20 +63,26 @@ export class CreateRecipeContainerComponent {
 
       this.isLoading = true;
 
-      if (this.data.isEdit) {
-        this.service.updateRecipeWithImage(this.data.recipe.id, recipe, this.selectedFile).subscribe(() => {
+      const minLoadingTime = 1000;
+      const startTime = Date.now();
+
+      const handleSuccess = () => {
+        const elapsedTime = Date.now() - startTime;
+        const remainingTime = minLoadingTime - elapsedTime;
+
+        setTimeout(() => {
           this.isLoading = false;
           this.dialogRef.close();
           this.store.dispatch(loadRecipes());
-        }, () => {
+        }, Math.max(remainingTime, 0));
+      };
+
+      if (this.data.isEdit) {
+        this.service.updateRecipeWithImage(this.data.recipe.id, recipe, this.selectedFile).subscribe(handleSuccess, () => {
           this.isLoading = false;
         });
       } else {
-        this.service.createRecipeWithImage(recipe, this.selectedFile).subscribe(() => {
-          this.isLoading = false;
-          this.dialogRef.close();
-          this.store.dispatch(loadRecipes());
-        }, () => {
+        this.service.createRecipeWithImage(recipe, this.selectedFile).subscribe(handleSuccess, () => {
           this.isLoading = false;
         });
       }
