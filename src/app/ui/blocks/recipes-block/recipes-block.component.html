@@ -1,5 +1,5 @@
 <div>
-  <mat-grid-list cols="3" rowHeight="350px" gutterSize="16px">
+  <mat-grid-list cols="4" rowHeight="350px" gutterSize="16px">
     <mat-grid-tile *ngFor="let recipe of recipes">
       <div class="recipe-card" (click)="onRecipeClick(recipe)" (mouseover)="showDetails(recipe)" (mouseleave)="hideDetails(recipe)">
         <img [src]="recipe.imageUrl" alt="{{ recipe.name }}" />
