@@ -19,4 +19,5 @@ export class HeaderBlockComponent {
   @Input() menu: string;
   @Input() openMenu: () => void;
   @Input() closeMenu: () => void;
+  @Input() createRecipe: () => void;
 }

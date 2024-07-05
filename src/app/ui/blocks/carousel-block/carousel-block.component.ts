@@ -1,21 +1,42 @@
-import { Component, Input } from '@angular/core';
-import { CarouselContainerComponent } from '../../../container/carousel-container/carousel-container.component';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgFor } from '@angular/common';
-import {CarouselCaptionComponent,CarouselComponent,CarouselControlComponent,CarouselIndicatorsComponent,CarouselInnerComponent,CarouselItemComponent,ThemeDirective} from '@coreui/angular';
+import { CarouselCaptionComponent, CarouselComponent, CarouselControlComponent, CarouselIndicatorsComponent, CarouselInnerComponent, CarouselItemComponent, ThemeDirective } from '@coreui/angular';
 import { RouterLink } from '@angular/router';
-import 'bootstrap/dist/css/bootstrap.min.css'
-
+import { Recipes } from '../../../core/models/recipe.model';
 
 @Component({
   selector: 'app-carousel-block',
   standalone: true,
-  imports: [CarouselContainerComponent, RouterLink, NgFor, CarouselCaptionComponent,CarouselComponent,CarouselControlComponent,CarouselIndicatorsComponent,CarouselInnerComponent,CarouselItemComponent,ThemeDirective],
+  imports: [
+    RouterLink,
+    NgFor,
+    CarouselCaptionComponent,
+    CarouselComponent,
+    CarouselControlComponent,
+    CarouselIndicatorsComponent,
+    CarouselInnerComponent,
+    CarouselItemComponent,
+    ThemeDirective,
+  ],
   templateUrl: './carousel-block.component.html',
-  styleUrl: './carousel-block.component.css'
+  styleUrls: ['./carousel-block.component.css']
 })
 export class CarouselBlockComponent {
-
   @Input() slides: any[];
+  @Input() randomRecipes: any[];
+  @Output() recipeClicked = new EventEmitter<Recipes>();
 
+  currentIndex: number = 0;
 
+  onRecipeClick(recipe: Recipes) {
+    this.recipeClicked.emit(recipe);
+  }
+
+  prevSlide() {
+    this.currentIndex = (this.currentIndex > 0) ? this.currentIndex - 1 : this.randomRecipes.length - 1;
+  }
+
+  nextSlide() {
+    this.currentIndex = (this.currentIndex < this.randomRecipes.length - 1) ? this.currentIndex + 1 : 0;
+  }
 }

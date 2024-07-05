@@ -65,4 +65,14 @@ export class RecipesService {
       return this.updateRecipe(recipeId, recipe);
     }
   }
+
+  getRandomRecipes(count: number): Observable<Recipes[]> {
+    return this.getAllRecipes().pipe(
+      map(recipes => {
+        const shuffled = recipes.sort(() => 0.5 - Math.random());
+        return shuffled.slice(0, count);
+      })
+    );
+  }
 }
+

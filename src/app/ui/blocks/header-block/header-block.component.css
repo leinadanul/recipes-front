@@ -3,7 +3,7 @@
   padding: 20px;
   display: flex;
   justify-content: center;
-  background-color: #4285f4;
+  background-color: #33353d;
 }
 
 .header__content {
@@ -33,6 +33,7 @@
   color: white;
   margin: 0 10px;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .navbar__link.active {
@@ -58,6 +59,8 @@
 
 .search-button {
   margin-left: 5px;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
 }
 
 .menu-button {
@@ -73,3 +76,4 @@
     display: block;
   }
 }
+

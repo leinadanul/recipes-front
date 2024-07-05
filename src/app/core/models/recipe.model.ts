@@ -8,6 +8,9 @@ export interface Recipes{
   imageUrl: string;
   instructions: string;
   recipeType : recipeType
+  showDetails?: boolean;
+
+
 }
 
 export enum recipeType{

@@ -1,17 +1,70 @@
-.carousel-container {
-  max-width: 1110px;
+.carousel {
+  max-width: auto;
   margin: auto;
-  height: 100%;
-  width: 100%;
+  height: auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel-inner {
   display: flex;
-  flex-direction: column;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
+}
+
+.carousel-item {
+  flex: 1 0 100%;
+  display: flex;
   justify-content: center;
-  flex: auto;
-}
-.carousel-container {
-  /*width: 20%;*/
-  max-width: 1110px;
-  /*margin: 20px auto;*/
+  /* align-items: center; */
+  /* text-align: center; */
+  position: relative;
+  /* max-width: 1110px; */
+  /* margin: auto; */
+  /* height: 100%; */
+  /* width: 100%; */
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: center; */
+  /* flex: auto; */
 }
 
+img {
+  width: auto;
+  height: 100%;
+  object-fit:cover;
+  cursor: pointer;
+}
 
+.caption {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: white;
+  font-size: 24px;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.carousel-control.prev {
+  left: 10px;
+}
+
+.carousel-control.next {
+  right: 10px;
+}
