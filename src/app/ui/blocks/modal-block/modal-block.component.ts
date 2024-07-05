@@ -1,11 +1,6 @@
 import { NgFor } from '@angular/common';
-import { Component, Input } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { RecipesService } from '../../../core/service/recipes.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { DelteMessageBlockComponent } from '../delte-message-block/delte-message-block.component';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { CreateRecipeContainerComponent } from '../../../container/create-recipe-container/create-recipe-container.component';
 
 
 @Component({
@@ -17,38 +12,12 @@ import { CreateRecipeContainerComponent } from '../../../container/create-recipe
 })
 export class ModalBlockComponent {
   @Input() recipeInfo: any;
-  constructor(
-    private snackBar: MatSnackBar,
-    private recipesService: RecipesService,
-    private dialogRef: MatDialogRef<ModalBlockComponent>,
-    private dialog: MatDialog
-  ) {}
-
+  @Output() deleteRecipeEvent = new EventEmitter<void>();
+  @Output() editRecipeEvent = new EventEmitter<void>();
   openDeleteConfirmation(): void {
-    const dialogRef = this.dialog.open(DelteMessageBlockComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.deleteRecipe();
-      }
-    });
-  }
-
-  deleteRecipe(): void {
-    this.recipesService.deleteRecipe(this.recipeInfo.id).subscribe(() => {
-      this.snackBar.open('Recipe deleted successfully', 'Close', {
-        duration: 3000,
-      });
-      this.dialogRef.close(true);
-    }, error => {
-      this.snackBar.open('Failed to delete recipe', 'Close', {
-        duration: 3000,
-      });
-    });
+    this.deleteRecipeEvent.emit();
   }
   openEditRecipe(): void {
-    const dialogRef = this.dialog.open(CreateRecipeContainerComponent, {
-      data: { recipe: this.recipeInfo, isEdit: true }
-    });
-}
+    this.editRecipeEvent.emit();
+  }
 }
