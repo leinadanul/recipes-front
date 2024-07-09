@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, HostListener, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -15,6 +15,7 @@ import { NgIf } from '@angular/common';
 })
 export class HeaderBlockComponent {
   @Input() isMenuOpen: boolean;
+  @Input() isHeaderHidden: boolean
   @Input() displayValue: string;
   @Input() menu: string;
   @Input() openMenu: () => void;

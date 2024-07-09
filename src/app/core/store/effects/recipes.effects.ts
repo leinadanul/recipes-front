@@ -33,7 +33,7 @@ export class RecipesEffects {
       mergeMap(action =>
         this.recipeService.createRecipeWithImage(action.recipe, action.recipePicture).pipe(
           map(newRecipe => {
-            this.store.dispatch(loadRecipes());  // Despachar la acción para recargar recetas
+            this.store.dispatch(loadRecipes());
             return addRecipeSuccess({ recipe: newRecipe });
           }),
           catchError(error => of(addRecipeFailure({ error: error.message })))
@@ -48,7 +48,7 @@ export class RecipesEffects {
       mergeMap(action =>
         this.recipeService.deleteRecipe(action.recipeId).pipe(
           map(() => {
-            this.store.dispatch(loadRecipes());  // Despachar la acción para recargar recetas
+            this.store.dispatch(loadRecipes());
             return deleteRecipeSuccess({ recipeId: action.recipeId });
           }),
           catchError(error => of(deleteRecipeFailure({ error: error.message })))
@@ -63,7 +63,7 @@ export class RecipesEffects {
       mergeMap(action =>
         this.recipeService.updateRecipeWithImage(action.recipeId, action.recipe, action.recipePicture).pipe(
           map(updatedRecipe => {
-            this.store.dispatch(loadRecipes());  // Despachar la acción para recargar recetas
+            this.store.dispatch(loadRecipes());
             return updateRecipeSuccess({ recipeId: action.recipeId, recipe: updatedRecipe });
           }),
           catchError(error => of(updateRecipeFailure({ error: error.message })))

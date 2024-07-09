@@ -4,6 +4,10 @@
   display: flex;
   justify-content: center;
   background-color: #33353d;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  transition: transform 0.3s ease-in-out;
 }
 
 .header__content {
@@ -14,6 +18,9 @@
   align-items: center;
 }
 
+.header.hidden {
+  transform: translateY(-100%);
+}
 .header__left {
   display: flex;
   align-items: center;
