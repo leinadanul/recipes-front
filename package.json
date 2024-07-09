@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "install:legacy": "npm install --legacy-peer-deps",
+    "install:force": "npm install --force"
   },
   "private": true,
   "dependencies": {
