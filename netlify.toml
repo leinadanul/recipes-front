@@ -1,0 +1,10 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_ENV = "production"
+
+[build.lifecycle]
+  # Utilizar el comando npm install con --legacy-peer-deps
+  onInstall = "npm install --legacy-peer-deps"
