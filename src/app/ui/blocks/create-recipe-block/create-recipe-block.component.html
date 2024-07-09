@@ -1,4 +1,4 @@
-<h1>New Recipe</h1>
+<h1>Recipe</h1>
 <div class="modal-container">
   <div class="modal-image-upload">
     <div class="image-upload">
@@ -13,7 +13,7 @@
     <form [formGroup]="recipeForm" (ngSubmit)="submitForm()">
       <mat-form-field>
         <mat-label>Name</mat-label>
-        <input matInput formControlName="name">
+        <input matInput  formControlName="name">
       </mat-form-field>
 
       <mat-form-field>
@@ -27,7 +27,7 @@
             <mat-label>Ingredient</mat-label>
             <input matInput formControlName="ingredient">
           </mat-form-field>
-          <mat-icon mat-button type="button" (click)="removeIngredient(i)">delete_outline</mat-icon>
+          <mat-icon mat-button type="button" class="trash-bin_icon" (click)="removeIngredient(i)">delete_outline</mat-icon>
         </div>
         <button mat-button type="button" (click)="addIngredient()"> + Ingredient</button>
       </div>
@@ -59,4 +59,8 @@
     </div>
     </form>
   </div>
+</div>
+
+<div *ngIf="isLoading" class="loading-overlay">
+  <mat-spinner></mat-spinner>
 </div>

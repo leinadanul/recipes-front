@@ -6,8 +6,11 @@ h1 {
 
 .modal-container {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  max-height: 80vh;
+  width: 79vw;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .modal-image-upload {
@@ -87,3 +90,21 @@ mat-dialog-actions {
   padding-top: 20px;
 }
 
+
+.trash-bin_icon{
+  cursor: pointer;
+}
+
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.7);
+  z-index: 1000;
+}

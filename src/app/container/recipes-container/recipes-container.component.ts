@@ -68,7 +68,7 @@ export class RecipesContainerComponent implements OnInit {
     this.store.dispatch(deleteRecipe({ recipeId }));
   }
 
-  updateRecipe(recipeId: string, recipe: Recipes): void {
-    this.store.dispatch(updateRecipe({ recipeId, recipe }));
+  updateRecipe(recipeId: string, recipe: Recipes, recipePicture: File): void {
+    this.store.dispatch(updateRecipe({ recipeId, recipe,recipePicture }));
   }
 }

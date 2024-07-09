@@ -1,15 +1,26 @@
-<header class="header">
+<header [class.hidden]="isHeaderHidden" class="header">
   <div class="header__content">
-    <h2 class="header__logo">AA</h2>
-    <nav class="navbar">
-      <button mat-icon-button [matMenuTriggerFor]="menu">
+    <div class="header__left">
+      <h2 class="header__logo">Aqui va un logo</h2>
+      <nav class="navbar">
+        <a class="navbar__link" (click)="createRecipe()">Create Recipe</a>
+      </nav>
+    </div>
+    <div class="header__right">
+      <div class="search-container">
+        <input type="text" placeholder="Search" class="search-input" />
+        <div mat-icon-button class="search-button">
+          <mat-icon>search</mat-icon>
+        </div>
+      </div>
+      <button mat-icon-button class="menu-button" [matMenuTriggerFor]="menu">
         <mat-icon>menu</mat-icon>
       </button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item>Item 1</button>
-        <button mat-menu-item>Item 2</button>
-        <button mat-menu-item>Item 3</button>
-      </mat-menu>
-    </nav>
+    </div>
   </div>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="/home">Recipes</button>
+    <button mat-menu-item routerLink="/about-us">Categories Us</button>
+    <button mat-menu-item routerLink="/projects">Create Recipe</button>
+  </mat-menu>
 </header>

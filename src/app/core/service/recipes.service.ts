@@ -19,8 +19,8 @@ export class RecipesService {
     return this.http.get<Recipes[]>(URL_RESOURCE.getRecipes);
   }
 
-  addRecipe(recipe: Recipes): Observable<void> {
-    return this.http.post<void>(URL_RESOURCE.postRecipe, recipe);
+  addRecipe(recipe: Recipes): Observable<any> {
+    return this.http.post<any>(URL_RESOURCE.postRecipe, recipe);
   }
 
   uploadImage(file: File): Observable<string> {
@@ -36,7 +36,7 @@ export class RecipesService {
     return this.http.delete<void>(Url);
   }
 
-  createRecipeWithImage(recipe: Recipes, file: File | null): Observable<void> {
+  createRecipeWithImage(recipe: Recipes, file: File | null): Observable<any> {
     if (file) {
       return this.uploadImage(file).pipe(
         switchMap((url: string) => {
@@ -48,12 +48,12 @@ export class RecipesService {
       return this.addRecipe(recipe);
     }
   }
-  updateRecipe(recipeId: string, recipe: Recipes): Observable<void> {
+  updateRecipe(recipeId: string, recipe: Recipes): Observable<any> {
     const Url = `${URL_RESOURCE.updateRecipe}/${recipeId}`;
-    return this.http.put<void>(Url, recipe);
+    return this.http.put<any>(Url, recipe);
   }
 
-  updateRecipeWithImage(recipeId: string, recipe: Recipes, file: File | null): Observable<void> {
+  updateRecipeWithImage(recipeId: string, recipe: Recipes, file: File | null): Observable<any> {
     if (file) {
       return this.uploadImage(file).pipe(
         switchMap((url: string) => {
@@ -65,4 +65,14 @@ export class RecipesService {
       return this.updateRecipe(recipeId, recipe);
     }
   }
+
+  getRandomRecipes(count: number): Observable<Recipes[]> {
+    return this.getAllRecipes().pipe(
+      map(recipes => {
+        const shuffled = recipes.sort(() => 0.5 - Math.random());
+        return shuffled.slice(0, count);
+      })
+    );
+  }
 }
+

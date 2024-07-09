@@ -1,10 +1,12 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { HeaderBlockComponent } from '../../ui/blocks/header-block/header-block.component';
 import { HeaderContainerFacade } from './header-container.facade';
 import { AsyncPipe } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { CreateRecipeContainerComponent } from '../create-recipe-container/create-recipe-container.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-header-container',
@@ -16,8 +18,14 @@ export class HeaderContainerComponent implements OnInit, OnDestroy {
   public isMenuOpen: boolean = false;
   public displayValue = "flex";
   public menu: string = 'header__menu header__menu--hidden'
+  private lastScrollTop: number = 0;
+  public isHeaderHidden: boolean = false;
 
-  constructor(private readonly facade: HeaderContainerFacade) {}
+  constructor(
+    private readonly facade: HeaderContainerFacade,
+    public dialog: MatDialog,
+
+  ) {}
 
   ngOnDestroy(): void {
     this.facade.destroySubscription();
@@ -36,4 +44,35 @@ export class HeaderContainerComponent implements OnInit, OnDestroy {
     this.isMenuOpen = false
     this.menu = 'header__menu header__menu--hidden';
   }
+
+  createRecipe = (): void => {
+    this.dialog.open(CreateRecipeContainerComponent, {
+      width: '80vw',
+      height: '80vh',
+      data: {
+        recipe: {
+          name: '',
+          description: '',
+          ingredients: [],
+          preparationTime: null,
+          imageUrl: '',
+          instructions: '',
+          recipeType: ''
+        },
+        isEdit: false
+      }
+    });
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll(): void {
+    const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (currentScrollTop > this.lastScrollTop) {
+      this.isHeaderHidden = true;
+    } else {
+      this.isHeaderHidden = false;
+    }
+    this.lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
+  }
+
 }

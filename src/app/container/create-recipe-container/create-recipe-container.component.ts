@@ -5,6 +5,8 @@ import { CreateRecipeContainerFacade } from './create-recipe-container.facade';
 import { Recipes } from '../../core/models/recipe.model';
 import { CreateRecipeBlockComponent } from '../../ui/blocks/create-recipe-block/create-recipe-block.component';
 import { RecipesService } from '../../core/service/recipes.service';
+import { loadRecipes } from '../../core/store/actions/recipes.actions';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-create-recipe-container',
@@ -16,18 +18,19 @@ export class CreateRecipeContainerComponent {
   recipeForm: FormGroup;
   imagePreview: string | ArrayBuffer | null = null;
   selectedFile: File | null = null;
+  isLoading = false;
 
   constructor(
     private fb: FormBuilder,
-    private dialog: MatDialogRef<CreateRecipeContainerComponent>,
-    private facade: CreateRecipeContainerFacade,
+    private dialogRef: MatDialogRef<CreateRecipeContainerComponent>,
     private service: RecipesService,
-    @Inject(MAT_DIALOG_DATA) public data: {recipe: Recipes, isEdit: boolean}
+    private store: Store,
+    @Inject(MAT_DIALOG_DATA) public data: { recipe: Recipes, isEdit: boolean }
   ) {
     this.recipeForm = this.fb.group({
       name: [data.recipe.name || '', Validators.required],
       description: [data.recipe.description || '', Validators.required],
-      ingredients: this.fb.array(data.recipe.ingredients.map(ing => this.fb.group({ingredient: [ing, Validators.required]}))),
+      ingredients: this.fb.array(data.recipe.ingredients.map(ing => this.fb.group({ ingredient: [ing, Validators.required] }))),
       preparationTime: [data.recipe.preparationTime || null, [Validators.required, Validators.pattern(/^[0-9]+$/)]],
       imageUrl: [data.recipe.imageUrl || ''],
       instructions: [data.recipe.instructions || '', Validators.required],
@@ -50,7 +53,6 @@ export class CreateRecipeContainerComponent {
   removeIngredient(index: number): void {
     this.ingredients.removeAt(index);
   }
-
   onSubmit() {
     if (this.recipeForm.valid) {
       const recipe: Recipes = {
@@ -59,30 +61,36 @@ export class CreateRecipeContainerComponent {
         preparationTime: parseInt(this.recipeForm.value.preparationTime, 10),
       };
 
+      this.isLoading = true;
+
+      const minLoadingTime = 1000;
+      const startTime = Date.now();
+
+      const handleSuccess = () => {
+        const elapsedTime = Date.now() - startTime;
+        const remainingTime = minLoadingTime - elapsedTime;
+
+        setTimeout(() => {
+          this.isLoading = false;
+          this.dialogRef.close();
+          this.store.dispatch(loadRecipes());
+        }, Math.max(remainingTime, 0));
+      };
+
       if (this.data.isEdit) {
-        this.service.updateRecipeWithImage(this.data.recipe.id, recipe, this.selectedFile).subscribe(
-          () => {
-            this.dialog.close();
-          },
-          (error) => {
-            console.error('Failed to update recipe', error);
-          }
-        );
+        this.service.updateRecipeWithImage(this.data.recipe.id, recipe, this.selectedFile).subscribe(handleSuccess, () => {
+          this.isLoading = false;
+        });
       } else {
-        this.service.createRecipeWithImage(recipe, this.selectedFile).subscribe(
-          () => {
-            this.dialog.close();
-          },
-          (error) => {
-            console.error('Failed to create recipe', error);
-          }
-        );
+        this.service.createRecipeWithImage(recipe, this.selectedFile).subscribe(handleSuccess, () => {
+          this.isLoading = false;
+        });
       }
     }
   }
 
   onCancel() {
-    this.dialog.close();
+    this.dialogRef.close();
   }
 
   onFileSelected(event: Event): void {
@@ -99,23 +107,4 @@ export class CreateRecipeContainerComponent {
       reader.readAsDataURL(file);
     }
   }
-  setFormData(recipe: Recipes): void {
-    this.recipeForm.patchValue({
-      name: recipe.name,
-      description: recipe.description,
-      preparationTime: recipe.preparationTime,
-      imageUrl: recipe.imageUrl,
-      instructions: recipe.instructions,
-      recipeType: recipe.recipeType
-    });
-
-    recipe.ingredients.forEach(ingredient => {
-      this.ingredients.push(this.fb.group({
-        ingredient: [ingredient, Validators.required]
-      }));
-    });
-
-    this.imagePreview = recipe.imageUrl;
-  }
-
 }

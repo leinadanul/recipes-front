@@ -5,6 +5,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialogModule } from '@angular/material/dialog';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 
 
@@ -12,7 +14,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,AlertModule, MatCardModule, MatIconModule, MatGridListModule,MatDialogModule],
+  imports: [RouterOutlet,AlertModule, MatCardModule, MatIconModule, MatGridListModule,MatDialogModule,NgbModule],
   template: `<router-outlet/>`,
 })
 export class AppComponent {

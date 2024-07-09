@@ -1,7 +1,10 @@
 import { createReducer, on } from '@ngrx/store';
 import {
   loadRecipes, loadRecipesSuccess, loadRecipesFailure,
-  deleteRecipeSuccess, updateRecipeSuccess
+  deleteRecipeSuccess, updateRecipeSuccess,
+  updateRecipeFailure,
+  addRecipeSuccess,
+  addRecipeFailure
 } from '../actions/recipes.actions';
 import { Recipes } from '../../models/recipe.model';
 
@@ -34,6 +37,14 @@ export const recipesReducer = createReducer(
     loading: false,
     error,
   })),
+  on(addRecipeSuccess, (state, { recipe }) => ({
+    ...state,
+    recipes: [...state.recipes, recipe],
+  })),
+  on(addRecipeFailure, (state, { error }) => ({
+    ...state,
+    error,
+  })),
   on(deleteRecipeSuccess, (state, { recipeId }) => ({
     ...state,
     recipes: state.recipes.filter(recipe => recipe.id !== recipeId),
@@ -41,5 +52,9 @@ export const recipesReducer = createReducer(
   on(updateRecipeSuccess, (state, { recipeId, recipe }) => ({
     ...state,
     recipes: state.recipes.map(r => r.id === recipeId ? recipe : r),
+  })),
+  on(updateRecipeFailure, (state, { error }) => ({
+    ...state,
+    error,
   }))
 );
