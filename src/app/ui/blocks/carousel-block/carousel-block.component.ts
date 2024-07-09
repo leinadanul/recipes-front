@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgFor } from '@angular/common';
-import { CarouselCaptionComponent, CarouselComponent, CarouselControlComponent, CarouselIndicatorsComponent, CarouselInnerComponent, CarouselItemComponent, ThemeDirective } from '@coreui/angular';
 import { RouterLink } from '@angular/router';
 import { Recipes } from '../../../core/models/recipe.model';
 
@@ -10,13 +9,6 @@ import { Recipes } from '../../../core/models/recipe.model';
   imports: [
     RouterLink,
     NgFor,
-    CarouselCaptionComponent,
-    CarouselComponent,
-    CarouselControlComponent,
-    CarouselIndicatorsComponent,
-    CarouselInnerComponent,
-    CarouselItemComponent,
-    ThemeDirective,
   ],
   templateUrl: './carousel-block.component.html',
   styleUrls: ['./carousel-block.component.css']
