@@ -1,3 +1,3 @@
 export const environment = {
-  apiUrl: 'https://recipe-app-c4pv.onrender.com'
+  apiUrl: 'https://recipe-app-cbtj.onrender.com'
 };
