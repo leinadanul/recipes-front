@@ -19,6 +19,6 @@ export const appConfig: ApplicationConfig = {
     provideEffects(appEffects),
     provideHttpClient(),
     provideAnimationsAsync(),
-    provideAnimations()
+    provideAnimations(), provideAnimationsAsync()
     ]
 };
