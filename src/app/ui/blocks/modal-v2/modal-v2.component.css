@@ -1,0 +1,108 @@
+.modal-container {
+  display: flex;
+  max-width: 90vw;
+  max-height: 90vh;
+  width: 800px;
+  height: auto;
+  position: relative;
+}
+
+.modal-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+}
+
+.modal-image img {
+  width: 440px;
+  height: 700px;
+  object-fit: cover;
+}
+.pointer-cursor {
+  cursor: pointer;
+}
+
+.modal-info {
+  flex: 1;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+p {
+  margin: 10px 0;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+ul li {
+  margin-bottom: 5px;
+}
+
+mat-dialog-actions {
+  justify-content: flex-end;
+  padding: 10px;
+}
+
+.trash-icon {
+  cursor: pointer;
+}
+
+.edit-icon {
+  cursor: pointer;
+}
+
+.save-icon {
+  cursor: pointer;
+}
+
+.actions-icon {
+  justify-content: space-between;
+}
+
+.trash-bin_icon {
+  cursor: pointer;
+}
+
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.7);
+  z-index: 1000;
+}
+
+@media (max-width: 768px) {
+  .modal-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .modal-image img {
+    width: 100%;
+    height: auto;
+  }
+
+  .modal-info {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+}
