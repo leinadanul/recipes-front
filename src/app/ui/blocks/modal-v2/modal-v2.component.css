@@ -1,26 +1,26 @@
 .modal-container {
   display: flex;
-  max-width: 90vw;
-  max-height: 90vh;
-  width: 800px;
-  height: auto;
-  position: relative;
+  max-width: 800px;
+  max-height: 600px;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  margin: auto;
+  margin-bottom: 20px;
+  max-height: -webkit-fill-available;
 }
 
 .modal-image {
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 5px;
 }
 
 .modal-image img {
-  width: 440px;
-  height: 700px;
+  width: 620px;
+  height: 480px;
   object-fit: cover;
-}
-.pointer-cursor {
-  cursor: pointer;
 }
 
 .modal-info {
@@ -50,24 +50,37 @@ mat-dialog-actions {
   padding: 10px;
 }
 
-.trash-icon {
-  cursor: pointer;
-}
-
-.edit-icon {
+.trash-icon, .delete-icon, .edit-icon, .close-icon, .save-icon {
   cursor: pointer;
 }
 
 .save-icon {
-  cursor: pointer;
+  transform: translateX(-10px);
 }
 
 .actions-icon {
   justify-content: space-between;
 }
+.actions-icon {
+  justify-content: space-between;
+}
 
-.trash-bin_icon {
-  cursor: pointer;
+.disabled-input {
+  border: none !important;
+  color: inherit !important;
+
+}
+
+.full-width {
+  width: 100% !important;
+}
+.form-row {
+  display: flex;
+  gap: 5px;
+}
+
+.form-group {
+  flex: 1;
 }
 
 .loading-overlay {
@@ -83,7 +96,7 @@ mat-dialog-actions {
   z-index: 1000;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 778px) {
   .modal-container {
     flex-direction: column;
     align-items: center;
@@ -97,6 +110,9 @@ mat-dialog-actions {
   .modal-info {
     padding: 10px;
   }
+  .full-width {
+    width: 100% !important;
+  }
 
   h1 {
     font-size: 20px;
@@ -104,5 +120,17 @@ mat-dialog-actions {
 
   p {
     font-size: 16px;
+  }
+  .loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.7);
+    z-index: 1000;
   }
 }

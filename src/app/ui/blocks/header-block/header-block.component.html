@@ -19,8 +19,6 @@
     </div>
   </div>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item routerLink="/home">Recipes</button>
-    <button mat-menu-item routerLink="/about-us">Categories Us</button>
-    <button mat-menu-item routerLink="/projects">Create Recipe</button>
+    <a mat-menu-item (click)="createRecipe()">Create Recipe </a>
   </mat-menu>
 </header>

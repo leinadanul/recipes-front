@@ -42,6 +42,10 @@ export class RecipesContainerComponent implements OnInit {
 
   openDialog(recipe: Recipes): void {
     this.dialog.open(ModalContainerComponent, {
+      width: '67vw',
+      height: '70vh',
+      maxWidth: 'none',
+
       data: recipe
     });
   }

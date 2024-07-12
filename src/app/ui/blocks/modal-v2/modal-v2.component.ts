@@ -43,6 +43,7 @@ export class ModalV2Component {
   @Output() addIngredientEvent = new EventEmitter<void>();
   @Output() removeIngredientEvent = new EventEmitter<number>();
   @ViewChild('fileInput', { static: false }) fileInput!: ElementRef<HTMLInputElement>;
+  isDisabled = true
 
   constructor(private dialogRef: MatDialogRef<ModalV2Component>) {}
 
@@ -79,7 +80,7 @@ export class ModalV2Component {
         this.dialogRef.close();
 
       }, Math.max(remainingTime, 0));
-    }, 2000);
+    }, 1000);
   }
 
   cancelForm(): void {
