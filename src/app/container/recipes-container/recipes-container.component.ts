@@ -49,7 +49,7 @@ export class RecipesContainerComponent implements OnInit {
   createRecipe = (): void => {
     this.dialog.open(CreateRecipeContainerComponent, {
       width: '80vw',
-      height: '80vh',
+      height: '100vh',
       data: {
         recipe: {
           name: '',

@@ -1,5 +1,12 @@
-<app-modal-block
-[recipeInfo]="recipeInfo"
-(deleteRecipeEvent)="openDeleteConfirmation()"
-(editRecipeEvent)="openEditRecipe()"
-/>
+<app-modal-v2
+  [recipeInfo]="recipeInfo"
+  (deleteRecipeEvent)="openDeleteConfirmation()"
+  [recipeForm]="recipeForm"
+  [imagePreview]="imagePreview"
+  (onSubmit)="saveRecipe()"
+  (onCancel)="disableEditing()"
+  (onFileSelected)="onFileSelected($event)"
+  (addIngredientEvent)="addIngredient()"
+  (removeIngredientEvent)="removeIngredient($event)"
+  (triggerFileInputEvent)="triggerFileInput()"
+></app-modal-v2>
