@@ -1,4 +1,4 @@
 export const environment = {
-  //deployUrl: 'https://recipe-app-cbtj.onrender.com'
-  apiUrl: 'http://localhost:8080'
+  apiUrl: 'https://recipe-app-cbtj.onrender.com'
+  //apiUrl: 'http://localhost:8080'
 };
