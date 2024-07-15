@@ -9,3 +9,7 @@
     <button mat-flat-button color="warn" (click)="onYesClick()">Delete</button>
   </div>
 </div>
+
+<div *ngIf="isLoading" class="loading-overlay">
+  <mat-spinner></mat-spinner>
+</div>
