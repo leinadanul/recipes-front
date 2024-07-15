@@ -4,66 +4,76 @@
     <input type="file" #fileInput style="display: none;" (change)="onFileSelected.emit($event)">
   </div>
   <div class="modal-info">
+    <div class="icon-container">
+      <mat-icon mat-button color="warn" class="trash-icon" (click)="openDeleteConfirmation()">delete_outline</mat-icon>
+      <mat-icon mat-button color="primary" class="edit-icon" (click)="enableEditing()">edit</mat-icon>
+      <mat-icon mat-button color="warn" class="close-icon" *ngIf="isEditing" (click)="disableEditing()">cancel</mat-icon>
+      <mat-icon mat-button color="primary" class="save-icon" *ngIf="isEditing" type="submit" disableRipple (click)="saveRecipe()"><mat-icon>save</mat-icon></mat-icon>
+    </div>
+
     <form [formGroup]="recipeForm" (ngSubmit)="saveRecipe()">
-          <p><strong>Name:</strong></p>
+      <div class="grid-info">
+        <div class="grid-row">
+          <p class="ingredient-class"><strong>Name:</strong></p>
           <mat-form-field [ngClass]="{'custom-disabled-input': !isEditing}">
             <input matInput formControlName="name" [disabled]="!isEditing" [ngClass]="{'disabled-input': !isEditing}">
           </mat-form-field>
-
-
-      <p><strong>Description:</strong></p>
-      <mat-form-field  class="full-width" [ngClass]="{'custom-disabled-input': !isEditing}">
-        <textarea matInput formControlName="description" [disabled]="!isEditing" [ngClass]="{'disabled-input': !isEditing}"></textarea>
-      </mat-form-field>
-
-      <p><strong>Ingredients:</strong></p>
-      <div class="form-row">
-      <ul *ngIf="!isEditing">
-        <li *ngFor="let ingredient of recipeInfo.ingredients">{{ ingredient }}</li>
-      </ul>
-      <div *ngIf="isEditing" formArrayName="ingredients">
-        <div *ngFor="let ingredient of ingredients.controls; let i = index" [formGroupName]="i">
-          <mat-form-field>
-            <input matInput formControlName="ingredient">
-          </mat-form-field>
-          <mat-icon mat-button type="button" class="trash-bin_icon" (click)="removeIngredient(i)">delete_outline</mat-icon>
         </div>
-        <button mat-button type="button" (click)="addIngredient()"> + Ingredient</button>
-      </div>
-    </div>
 
 
-
-      <p><strong>Instructions:</strong></p>
-      <mat-form-field class="full-width" [ngClass]="{'custom-disabled-input': !isEditing}">
-        <textarea matInput formControlName="instructions" [disabled]="!isEditing" [ngClass]="{'disabled-input': !isEditing}"></textarea>
-      </mat-form-field>
-
-    <div class="form-row">
-      <div class="form-group">
-        <p><strong>Preparation Time:</strong></p>
-        <mat-form-field [ngClass]="{'custom-disabled-input': !isEditing}">
-          <input matInput formControlName="preparationTime" type="number" [disabled]="!isEditing" [ngClass]="{'disabled-input': !isEditing}">
-        </mat-form-field>
-      </div>
-      <div class="form-group">
-      <p><strong>Recipe Type:</strong></p>
-      <mat-form-field [ngClass]="{'custom-disabled-input': !isEditing}">
-        <mat-select formControlName="recipeType" [disabled]="!isEditing">
-          <mat-option value="NORMAL">Normal</mat-option>
-          <mat-option value="VEGAN">Vegan</mat-option>
-          <mat-option value="LIGHT">Light</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-  </div>
-
-
-      <div mat-dialog-actions class="actions-icon">
-        <mat-icon mat-button color="warn" class="trash-icon" (click)="openDeleteConfirmation()">delete_outline</mat-icon>
-        <mat-icon mat-button color="primary" class="edit-icon" (click)="enableEditing()">edit</mat-icon>
-        <mat-icon mat-button color="warn" class="close-icon" *ngIf="isEditing" (click)="disableEditing()">cancel</mat-icon>
-        <button mat-icon-button color="primary" class="save-icon" *ngIf="isEditing" type="submit" disableRipple><mat-icon>save</mat-icon></button>
+        <div class="grid-row">
+          <p><strong>Description:</strong></p>
+          <mat-form-field class="full-width" [ngClass]="{'custom-disabled-input': !isEditing}">
+            <textarea matInput formControlName="description" [disabled]="!isEditing" [ngClass]="{'disabled-input': !isEditing}"></textarea>
+          </mat-form-field>
+        </div>
+        <div class="grid-row">
+          <p><strong>Ingredients:</strong></p>
+          <div class="form-row">
+            <div class="ingredients-container">
+              <ul *ngIf="!isEditing">
+                <li *ngFor="let ingredient of recipeInfo.ingredients">{{ ingredient }}</li>
+              </ul>
+              <div *ngIf="isEditing" formArrayName="ingredients">
+                <div *ngFor="let ingredient of ingredients.controls; let i = index" [formGroupName]="i">
+                  <mat-form-field class="full-width">
+                    <input matInput formControlName="ingredient">
+                  </mat-form-field>
+                  <mat-icon mat-button type="button" class="trash-bin_icon" (click)="removeIngredient(i)">delete_outline</mat-icon>
+                </div>
+                <button mat-button type="button" (click)="addIngredient()"> + Ingredient</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="grid-row">
+          <p><strong>Instructions:</strong></p>
+          <mat-form-field class="full-width instructions-textarea" [ngClass]="{'custom-disabled-input': !isEditing}">
+            <textarea matInput formControlName="instructions" [disabled]="!isEditing"
+  [ngClass]="{'disabled-input': !isEditing}" cdkTextareaAutosize
+  cdkAutosizeMinRows="2" cdkAutosizeMaxRows="5"></textarea>
+          </mat-form-field>
+        </div>
+        <div class="grid-row">
+          <div class="form-row">
+            <div class="form-group">
+              <p><strong>Preparation Time:</strong></p>
+              <mat-form-field [ngClass]="{'custom-disabled-input': !isEditing}">
+                <input matInput formControlName="preparationTime" type="number" [disabled]="!isEditing" [ngClass]="{'disabled-input': !isEditing}">
+              </mat-form-field>
+            </div>
+            <div class="form-group">
+              <p><strong>Recipe Type:</strong></p>
+              <mat-form-field [ngClass]="{'custom-disabled-input': !isEditing}">
+                <mat-select formControlName="recipeType" [disabled]="!isEditing" [ngClass]="{'disabled-input': !isEditing}">
+                  <mat-option value="NORMAL">Normal</mat-option>
+                  <mat-option value="VEGAN">Vegan</mat-option>
+                  <mat-option value="LIGHT">Light</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
       </div>
     </form>
   </div>
