@@ -72,6 +72,7 @@
 
 .menu-button {
   display: none;
+
 }
 
 @media (max-width: 720px) {
@@ -81,6 +82,8 @@
 
   .menu-button {
     display: block;
+    cursor: pointer;
+    color: aliceblue;
   }
 }
 
